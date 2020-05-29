@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   
+ <style type="text/css">
+        body{
+            background-size: cover;
+        }
+        img{
+            position:absolute;
+            left:150px;
+            top: 0px;
+            z-index:-10;
+            width:1200px;
+            height:700px;
+
+        }
+        .aa{
+            width:300px;
+            height:180px;
+            background-color: rgba(0,0,0,0.5);
+            margin:0 auto;
+            margin-top: 200px;
+            padding-top:10px;
+            padding-left: 50px;
+            border-radius: 15px;
+            -webkit-border-radius:15px;
+            -o-border-radius:15px;
+            -moz-border-radius:15px;
+            color:white;
+            font-weight:border;
+         }
+
+        .aa input[type="text"]
+        {
+            width:200px;
+            height:35px;
+            border=0;
+            border-radius: 5px;
+            -webkit-border-radius:5px;
+            -o-border-radius:5px;
+            -moz-border-radius:5px;
+            
+        }
+        
+        .aa input[type="password"]
+        {
+            width:200px;
+            height:35px;
+            border=0;
+            border-radius: 5px;
+            -webkit-border-radius:5px;
+            -o-border-radius:5px;
+            -moz-border-radius:5px;
+            
+        }
+        .aa input[type="submit"]
+        {
+         background-color: white;
+        }
+    </style>
+</head>
+<body>
+    {% block content %}
+    <img  src="{{ url_for('static',filename='images/newimage.jpg')}}">
+  {% endblock %}
+
+<h1>
+
+</h1>
+  <div class="aa" align="center" >
+ <h2 >App ID: </h2>
+   <form  method="post" action="/first">
+   
+   <input type="text" name="appid" placeholder="enter the app id:"/>
+   <br>
+   <br>
+   <br>
+   <input type="submit" value="submit" id="s" onclick="myfunc()"/>
+
+    </form>
+ </div>
+   <div class= "newbutton" id="nb" style="display:none; z-index: 30 " align="center" >
+   <div class="spinner-grow text-primary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-secondary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-success" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-danger" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-warning" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-info" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-light" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<div class="spinner-grow text-dark" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+
+    </div>
+  
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script type="text/javascript">
+function myfunc()
+{
+  // document.getElementById("s").style.display = "none"; // to undisplay
+  // document.getElementById("nb").style.display = ""; // to display
+  // return true;
+  $("#nb").show();
+            $("#s").hide();       
+        }
+
+</script>
+

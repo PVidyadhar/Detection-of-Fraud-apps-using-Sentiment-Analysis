@@ -1,0 +1,111 @@
+<html>
+
+
+
+
+<body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+
+
+<script>
+$(function () {
+
+    $('#container').highcharts({
+
+        chart: {
+            type: 'gauge'
+        },
+
+        title: {
+            text: 'Overall Rating'
+        },
+
+        pane: {
+            startAngle: -90,
+            endAngle: 90, 
+            background: null
+        },
+
+        // the value axis
+        yAxis: {
+            min: 0,
+            max: 1,
+
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '#666',
+
+            tickPixelInterval: 10,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 10,
+            tickColor: '#666',
+            labels: {
+                step: 2,
+                rotation: 'auto'
+            },
+            title: {
+                text: 'km/h'
+            },
+            plotBands: [{
+                from: 0,
+                to: 0.3,
+                color: '#55BF3B' // green
+            }, {
+                from: 0.3,
+                to: 0.5,
+                color: '#DDDF0D' // yellow
+            }, {
+                from: 0.5,
+                to: 0.8,
+                color: '#DF5353' // red
+            }, {
+            	from: 0.8,
+                to: 1,
+                color: '#6677ff',
+                innerRadius: '100%',
+                outerRadius: '110%'
+            }]
+        },
+
+        series: [{
+            name: 'Speed',
+            data: [{{ratio}} ],
+            tooltip: {
+                valueSuffix: ''
+            }
+        }]
+
+    },
+    // Add some life
+   function (chart) {
+        if (!chart.renderer.forExport) {
+            setInterval(function () {
+               /* var point = chart.series[0].points[0],
+                    newVal,
+                    inc = Math.round((Math.random() - 0.5) * 20);*/
+
+               /* newVal = point.y + inc;
+                if (newVal < 0 || newVal > 200) {
+                    newVal = point.y - inc;
+                }*/
+
+               // point.update(0.5);
+
+            }, 3000);
+        }
+    });
+});
+</script>
+
+</body>
+</html>

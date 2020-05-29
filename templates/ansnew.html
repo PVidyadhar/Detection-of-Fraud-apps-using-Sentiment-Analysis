@@ -1,0 +1,142 @@
+<!doctype html>
+
+
+
+<html lang="en">
+<style>
+body {
+  background: hsl(120, 40%, 60%);
+  padding-top: 150px;
+  font: normal 18px Sniglet; color: white; text-align: center;
+}
+form {
+    margin: auto;
+    width: 35%;
+}
+
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+</style>
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Review Sentiment Analysis</title>
+</head>
+
+<body>
+
+<div align="center">
+
+	{% if ratio <= 0.5 %}
+    <div class="alert alert-danger" role="alert">     <p style="font-size:20px">This app seems to be bad.</p> </div>
+    {% endif %}
+    {% if ratio > 0.5 %}
+    <div class="alert alert-success" role="alert">     <p style="font-size:20px">This app seems to be good.</p> </div>
+    {% endif %}
+
+
+    Overall confidence level of app is :{{overall}} 
+
+    {% if newfraud == 1 %}
+    <div class="alert alert-danger" role="alert">     <p style="font-size:20px">This app might be fraud</p> </div>
+    {% else %}
+    <div class="alert alert-success" role="alert">     <p style="font-size:20px">This app seems to be safe</p> </div>
+
+    {% endif %}
+
+   <!-- <form action='/plot.png' method='post'><input type="submit" value="Show Trained Graph"/></form>-->
+
+
+
+<div id="container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+</div>
+ <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script>
+$(function () {
+
+    $('#container').highcharts({
+
+        chart: {
+            type: 'gauge'
+        },
+
+        title: {
+            text: 'Overall Rating'
+        },
+
+        pane: {
+            startAngle: -90,
+            endAngle: 90, 
+            background: null
+        },
+
+        // the value axis
+        yAxis: {
+            min: 0,
+            max: 10,
+
+            minorTickInterval:1,
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '',
+
+            tickPixelInterval: 15,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 10,
+            tickColor: '',
+            labels: {
+                step: 10,
+                rotation: 'auto'
+            },
+            title: {
+                text: ''
+            },
+            plotBands: [{
+                from: 0,
+                to: 3,
+                color: '#DF5353' // green 'auto'
+            }, {
+                from: 3,
+                to: 5,
+                color: '#6677ff' // yellow
+            }, {
+                from: 5,
+                to: 8,
+                color: '#DDDF0D' // red
+            }, {
+                from: 8,
+                to: 10,
+                color: '#55BF3B',
+               /* innerRadius: '100%',
+                outerRadius: '110%'*/
+            }]
+        },
+
+        series: [{
+            name: 'Overall rating',
+            data: [{{mr}}],
+            tooltip: {
+                valueSuffix: ''
+            }
+        }]
+
+    },
+    // Add some life
+   ); 
+});
+</script>
+</body>
+</html>
